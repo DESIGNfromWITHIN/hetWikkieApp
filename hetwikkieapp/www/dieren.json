@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Querney", 
+        "id": "0",
+        "diersoort": "Schaap",
+        "description": "Dit is Querney, één van onze gecastreerde rammen. Je herkent hem aan zijn gevlekte kop!"
+    },
+    {
+        "title":"Suske", 
+        "id": "1",
+        "diersoort": "Schaap",
+        "description": "Dit is Suske, één van onze gecastreerde rammen. Je herkent hem aan zijn gevlekte kop!"
+    }
+]

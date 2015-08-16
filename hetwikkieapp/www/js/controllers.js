@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('wikkie.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,16 +41,49 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.factory('dierService', function($http) {
+  var url="http://hetwikkie.nl/dieren.json";
+  var dierenData = function(){
+    return $http.get(url);
+  }
+  return {
+    getData: dierenData
+  }
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.factory('dierDetailService', function($http) {
+  var dieren = [
+    {
+        "title": "Querney", 
+        "id": "0",
+        "diersoort": "Schaap",
+        "description": "Dit is Querney, één van onze gecastreerde rammen. Je herkent hem aan zijn gevlekte kop!"
+    },
+    {
+        "title":"Suske", 
+        "id": "1",
+        "diersoort": "Schaap",
+        "description": "Dit is Suske, één van onze gecastreerde rammen. Je herkent hem aan zijn gevlekte kop!"
+    }
+  ];
+  return {
+    all: function() {
+      return dieren;
+    },
+    get: function(dierId) {
+      return dieren[dierId];
+    }
+  }
+})
+
+.controller('dierenCtrl', function($scope, dierService) {
+  dierService.getData()
+  .success(function(data){
+    $scope.dieren = data;
+  })
+  .error(function(){});
+})
+
+.controller('dierCtrl', function($scope, $stateParams, dierDetailService) {
+  $scope.dier = dierDetailService.get($stateParams.dierId);
 });

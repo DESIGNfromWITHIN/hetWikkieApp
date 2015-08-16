@@ -1,0 +1,12 @@
+<ion-view title="Dieren">
+  <ion-content>
+    <ion-list>
+
+      <ion-item ng-repeat="dier in dieren" type="item-text-wrap" href="#/app/dieren/{{dier.id}}">
+        <h3>{{ dier.title }}</h3>
+      </ion-item>
+      
+    </ion-list>
+    
+  </ion-content>
+</ion-view>
