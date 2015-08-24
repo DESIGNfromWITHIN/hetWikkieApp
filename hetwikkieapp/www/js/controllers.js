@@ -42,13 +42,13 @@ angular.module('wikkie.controllers', [])
 })
 
 .controller('dierenCtrl', function($scope, dierService) {
-  dierService.getData()
-  .success(function(data){
-    $scope.dieren = data;
-  })
-  .error(function(){});
+  $scope.all = dierService.all;
 })
 
-.controller('dierCtrl', function($scope, $stateParams, dierDetailService) {
-  $scope.dier = dierDetailService.get($stateParams.dierId);
+.controller('dierCtrl', function($scope, dierService, $stateParams) {
+  //debugger
+  $scope.dier = function() {
+    return dierService.get($stateParams.dierId);
+  };
 });
+
